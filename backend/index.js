@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
     res.json({ msg: "Welcome to autoparts" });
 });
 //user routes
-app.use(userRoutes);
+app.use("/api", userRoutes);
 
 const port = env.PORT || 3000;
 
