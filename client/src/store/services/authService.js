@@ -19,5 +19,5 @@ const AuthService = createApi({
         }
     }
 });
-
+export const {useAuthLoginMutation} = AuthService
 export default AuthService;
