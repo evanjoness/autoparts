@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useAuthLoginMutation } from "../../store/services/authService";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setAdminToken } from "../../store/reducers/authReducer";
+
 const AdminLogin = ()=>{
+    const navigate = useNavigate()
     const [state, setState] = useState({
         email:'',
         password: ''
@@ -16,6 +21,15 @@ const AdminLogin = ()=>{
         e.preventDefault();
         login(state);
     }
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (response.isSuccess) {
+          localStorage.setItem("admin-token", response?.data?.token);
+          dispatch(setAdminToken(response?.data?.token));
+          navigate("/dashboard/products");
+        }
+      }, [response.isSuccess, response?.data?.token, dispatch, navigate]);
+      
     return(
         <div className="bg-black1 h-screen flex justify-center items-center" >
             <form className="bg-black2 p-5 w-10/12 sm:w-8/12 md:w-6/12 lg:w-3/12 rounded" onSubmit={adminLoginFunction}>
