@@ -1,16 +1,10 @@
-import AdminNav from "../../components/AdminNav";
-import SideBar from "../../components/SideBar";
-const Products = ()=>{
+import Wrapper from "./Wrapper";
+const Products = () => {
     return (
-        <>
-        <SideBar/>
-        <AdminNav/>
-        <section className="ml-64 bg-gray-900 min-h-screen pt-28 px-4">
-            <div className="bg-gray-800 text-white p-4">
-                lorem ipsum
-            </div>
-        </section>
-        </>
+        <Wrapper>
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+        </Wrapper>
     )
 }
 
