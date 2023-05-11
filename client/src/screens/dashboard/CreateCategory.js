@@ -16,12 +16,12 @@ const CreateCategory = () => {
     }
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    useEffect(()=>{
-        if(data?.isSuccess){
-            dispatch(setSuccess(data?.data?.message))
-            navigate("/dashboard/categories");
+    useEffect(() => {
+        if (data?.isSuccess) {
+          dispatch(setSuccess(data?.data?.message));
+          navigate("/dashboard/categories");
         }
-    },[data?.isSuccess])
+      }, [data?.isSuccess, data?.data?.message, dispatch, navigate]);
     return (
         <Wrapper>
             <ScreenHeader>

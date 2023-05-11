@@ -12,7 +12,7 @@ const Categories = () => {
         return()=>{
             dispatch(clearMessage());
         }
-    },[])
+    },[dispatch, success])
     return (
         <Wrapper>
             <ScreenHeader>
