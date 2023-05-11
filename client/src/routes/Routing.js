@@ -14,7 +14,8 @@ const Routing = ()=>{
             </Route>
             <Route path="dashboard">
                 <Route path="products" element={<Private><Products/></Private>}/>
-                <Route path="categories" element={<Private><Categories/></Private>}/>
+                <Route path="categories" element={<Private><Categories/></Private>}></Route>
+                <Route path="categories/:page" element={<Private><Categories/></Private>}/>
                 <Route path="create-category" element={<Private><CreateCategory/></Private>}/>
             </Route>
         </Routes>
