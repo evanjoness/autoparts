@@ -42,7 +42,7 @@ const Categories = () => {
                     {data?.categories?.map(category =>(
                         <tr key={category.id} className="odd:bg-gray-800">
                             <td className="p-3 capitalize texy-sm font-normal text-gray-400 ">{category.name}</td>
-                            <td className="p-3 capitalize texy-sm font-normal text-gray-400 "><button>edit</button></td>
+                            <td className="p-3 capitalize texy-sm font-normal text-gray-400 "><Link to={`/dashboard/update-category/${category._id}`} className="btn btn-warning">edit</Link></td>
                             <td className="p-3 capitalize texy-sm font-normal text-gray-400 "><button>delete</button></td>
                         </tr>
                     ))}

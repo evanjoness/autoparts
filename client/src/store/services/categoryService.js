@@ -32,9 +32,18 @@ const categoryService = createApi({
                     }
                 },
                 providesTags:["categories"]
+            }),
+            fetchCategory : builder.query({
+                query:(id)=>{
+                    return{
+                        url:`fetch-category/${id}`,
+                        method:"GET"
+                    }
+                },
+                providesTags : ["categories"]
             })
         }
     }
 });
-export const {useCreateMutation, useGetQuery} = categoryService
+export const {useCreateMutation, useGetQuery, useFetchCategoryQuery} = categoryService
 export default categoryService;
