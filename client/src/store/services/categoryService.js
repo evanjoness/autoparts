@@ -12,48 +12,58 @@ const categoryService = createApi({
             return headers;
         }
     }),
-    endpoints:(builder)=>{
-        return{
-            create:builder.mutation({
-                query:(name)=>{
-                    return{
-                        url:"create-category",
-                        method:"POST",
-                        body:name
-                    }
-                },
-                invalidatesTags:["categories"]
-            }),
-            updateCategory: builder.mutation({
-                query:(data)=>{
-                    return{
-                        url: `update-category/${data.id}`,
-                        method:"PUT",
-                        body:{name: data.name}
-                    }
-                },
-                invalidatesTags:["categories"]
-            }),
-            get: builder.query({
-                query:(page)=>{
-                    return{
-                        url:`/categories/${page}`,
-                        method:"GET"
-                    }
-                },
-                providesTags:["categories"]
-            }),
-            fetchCategory : builder.query({
-                query:(id)=>{
-                    return{
-                        url:`fetch-category/${id}`,
-                        method:"GET"
-                    }
-                },
-                providesTags : ["categories"]
-            })
+    endpoints: (builder) => {
+        return {
+          create: builder.mutation({
+            query: (name) => {
+              return {
+                url: "create-category",
+                method: "POST",
+                body: name,
+              };
+            },
+            invalidatesTags: ["categories"],
+          }),
+          updateCategory: builder.mutation({
+            query: (data) => {
+              return {
+                url: `update-category/${data.id}`,
+                method: "PUT",
+                body: { name: data.name },
+              };
+            },
+            invalidatesTags: ["categories"],
+          }),
+          deleteCategory: builder.mutation({
+            query: (id) => {
+              return {
+                url: `delete-category/${id}`,
+                method: "DELETE",
+              };
+            },
+            invalidatesTags: ["categories"],
+          }),
+          get: builder.query({
+            query: (page) => {
+              return {
+                url: `categories/${page}`,
+                method: "GET",
+              };
+            },
+            providesTags: ["categories"],
+          }),
+          fetchCategory: builder.query({
+            query: (id) => {
+              return {
+                url: `fetch-category/${id}`,
+                method: "GET",
+              };
+            },
+            providesTags: ["categories"],
+          })
         }
     }
 });
-export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, useUpdateCategoryMutation} = categoryService
+export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, 
+useUpdateCategoryMutation, useDeleteCategoryMutation} = categoryService
 export default categoryService;
