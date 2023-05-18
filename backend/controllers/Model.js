@@ -1,23 +1,33 @@
 const formidable = require("formidable");
-const {validationResult} = require("express-validator");
 class Model {
     async create(req, res){
         const form = formidable({multiples:true});
         form.parse(req, (err, fields)=>{
             if(!err){
                 const parsedData = JSON.parse(fields.data);
-                req.body.brands = parsedData.brands;
-                req.body.model = parsedData.model;
-                req.body.year = parsedData.year;
-                req.body.body = parsedData.body;
-                req.body.engine = parsedData.engine;
-                req.body.power = parsedData.power;
-                const errors = validationResult(req);
-                if(!errors){
-
-                }else{
-                    console.log(errors.array());
-                    return res.status(400).json({errors:errors.array()})
+                const errors = [];
+                const d = new Date();
+                let currentYear = d.getFullYear();
+                if(parsedData.model.trim().length===0){
+                    errors.push({model:"car model is required"})
+                }
+                if(parseInt(parsedData.year)<1950 || parseInt(parsedData.year)>currentYear){
+                    errors.push({year:"year can not be lower than 1950 or bigger than current"})
+                }
+                if(parsedData.body.trim().length===0){
+                    errors.push({body:"car body is required"})
+                }
+                if(parsedData.engine.trim().length===0){
+                    errors.push({engine:"car engine is required"})
+                }
+                if(parsedData.power.trim().length===0){
+                    errors.push({engine:"car power is required"})
+                }
+                if(parsedData.brands.trim().length===0){
+                    errors.push({brands:"car brand is required"})
+                }
+                else{
+                    res.status(400).json({errors})
                 }
             }
         })
