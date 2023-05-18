@@ -8,6 +8,7 @@ const categoryService = createApi({
         prepareHeaders:(headers, {getState})=>{
             const reducers = getState();
             const token = reducers?.authReducer?.adminToken;
+            console.log(token);
             headers.set("authorization", token ? `Bearer ${token}` : "");
             return headers;
         }
@@ -60,10 +61,19 @@ const categoryService = createApi({
               };
             },
             providesTags: ["categories"],
+          }),
+          allModels : builder.query({
+            query:()=>{
+              return{
+                url:"allbrands",
+                method:"GET"
+              };
+            },
+            providesTags: ["categories"]
           })
         }
     }
 });
-export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, 
+export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, useAllModelsQuery,
 useUpdateCategoryMutation, useDeleteCategoryMutation} = categoryService
 export default categoryService;

@@ -41,7 +41,7 @@ const Categories = () => {
     <Wrapper>
       <ScreenHeader>
         <Link to="/dashboard/create-category" className="btn-dark">
-          add categories <i className="bi bi-plus"></i>
+          add car brand <i className="bi bi-plus"></i>
         </Link>
       </ScreenHeader>
       {success && <div className="alert-success">{success}</div>}
