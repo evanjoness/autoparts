@@ -1,5 +1,6 @@
 const formidable = require("formidable");
 const carModelSchema = require("../models/CarModel");
+const Brand = require("../models/Category"); // Add the Brand model import
 
 class Model {
   async create(req, res) {
@@ -8,38 +9,43 @@ class Model {
       if (!err) {
         const parsedData = JSON.parse(fields.data);
         console.log(parsedData);
-
         const errors = [];
         const d = new Date();
         let currentYear = d.getFullYear();
+        if (parsedData.brands.trim().length === 0) {
+          errors.push({ msg: "car brand is required" });
+        }
         if (parsedData.model.trim().length === 0) {
-          errors.push({ model: "car model is required" });
+          errors.push({ msg: "car model is required" });
         }
         if (
           parseInt(parsedData.year) < 1950 ||
           parseInt(parsedData.year) > currentYear
         ) {
           errors.push({
-            year: "year cannot be lower than 1950 or bigger than current",
+            msg: "year cannot be lower than 1950 or bigger than current",
           });
         }
         if (parsedData.body.trim().length === 0) {
-          errors.push({ body: "car body is required" });
+          errors.push({ msg: "car body is required" });
         }
         if (parsedData.engine.trim().length === 0) {
-          errors.push({ engine: "car engine is required" });
+          errors.push({ msg: "car engine is required" });
         }
         if (parsedData.power.trim().length === 0) {
-          errors.push({ engine: "car power is required" });
+          errors.push({ msg: "car power is required" });
         }
-        if (parsedData.brands.trim().length === 0) {
-          errors.push({ brands: "car brand is required" });
-        }
-
         if (errors.length === 0) {
           try {
+            const brand = await Brand.findOne({ name: parsedData.brands });
+            if (!brand) {
+              return res
+                .status(400)
+                .json({ errors: [{ msg: "Invalid car brand" }] });
+            }
+
             const response = await carModelSchema.create({
-              carBrand: parsedData.brands,
+              carBrandId: brand._id, // Use the _id of the brand
               carModel: parsedData.model,
               year: parsedData.year,
               carBody: parsedData.body,

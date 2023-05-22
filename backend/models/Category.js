@@ -6,4 +6,4 @@ const categorySchema = mongoose.Schema({
         unique:true
     }
 },{timestamps:true})
-module.exports =  mongoose.model("categorie", categorySchema)
+module.exports =  mongoose.model("brands", categorySchema)
