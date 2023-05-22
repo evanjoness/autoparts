@@ -18,6 +18,7 @@ const Routing = ()=>{
             <Route path="dashboard">
                 <Route path="categories" element={<Private><Categories/></Private>}/>
                 <Route path="models" element={<Private><Models/></Private>}/>
+                <Route path="models/:page" element={<Private><Models/></Private>}/>
                 <Route path="categories/:page" element={<Private><Categories/></Private>}/>
                 <Route path="create-category" element={<Private><CreateCategory/></Private>}/>
                 <Route path="update-category/:id" element={<Private><UpdateCategory/></Private>}/>
