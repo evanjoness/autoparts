@@ -2,6 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 const modelService = createApi({
     reducerPath:"model",
+    tagTypes:"models",
     baseQuery:fetchBaseQuery({
         baseUrl:"http://localhost:5000/api/",
         prepareHeaders:(headers, {getState})=>{
@@ -22,6 +23,7 @@ const modelService = createApi({
                         body:data
                     }
                 },
+
                 invalidatesTags: ['models']
             }), 
             getModels : builder.query({
@@ -30,7 +32,8 @@ const modelService = createApi({
                         url:`/models/${page}`,
                         method:"GET"
                     }
-                }
+                },
+                invalidatesTags: ['models']
             })
         }
     }

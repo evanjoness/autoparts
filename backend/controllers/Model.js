@@ -64,13 +64,14 @@ class Model {
       }
     });
   }
-  async get(req, res){
-    const {page} = req.params;
+  async get(req, res) {
+    const { page } = req.params;
     const perPage = 3;
     const skip = (page - 1) * perPage;
     try {
       const count = await carModelSchema.find({}).countDocuments();
-      const response = await carModelSchema.find({})
+      const response = await carModelSchema
+        .find({})
         .skip(skip)
         .limit(perPage)
         .sort({ updatedAt: -1 });
@@ -78,8 +79,10 @@ class Model {
       return res.status(200).json({ models: response, perPage, count });
     } catch (error) {
       console.log(error.message);
+      return res.status(500).json({ error: error.message }); // Додано відправку помилки до клієнта
     }
   }
+  
 }
 
 module.exports = new Model();
