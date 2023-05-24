@@ -82,7 +82,19 @@ class Model {
       return res.status(500).json({ error: error.message }); // Додано відправку помилки до клієнта
     }
   }
-  
+  async getModel(req, res){
+    const {id} = req.params;
+    try {
+      const model = await carModelSchema.findOne({_id:id});
+      return res.status(200).json(model)
+    } catch (error) {
+      return res.status(500).json({error : error.message})
+      console.log(error.message);
+    }
+  }
+  async updateModel(req, res){
+    console.log(req.bo);
+  }
 }
 
 module.exports = new Model();

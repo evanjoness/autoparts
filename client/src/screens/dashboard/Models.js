@@ -58,7 +58,7 @@ const Models = () => {
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.carEngine}</td>
                         <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.enginePower}</td>
                         <td className="p-3 capitalize texy-sm font-normal text-gray-400 ">
-                        <Link to={``} className="btn btn-warning">
+                        <Link to={`/dashboard/edit-model/${model._id}`} className="btn btn-warning">
                           edit
                         </Link>
                       </td>

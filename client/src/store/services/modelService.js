@@ -24,8 +24,18 @@ const modelService = createApi({
                     }
                 },
 
-                invalidatesTags: ['models']
+                invalidatesTags: ['products']
             }), 
+            updateModel:builder.mutation({
+                query:data=>{
+                    return{
+                        url:"/model",
+                        method:"PUT",
+                        body:data
+                    }
+                },
+                invalidatesTags: ['products']
+            }),
             getModels : builder.query({
                 query:(page)=>{
                     return{
@@ -33,10 +43,19 @@ const modelService = createApi({
                         method:"GET"
                     }
                 },
-                invalidatesTags: ['models']
+                providesTags: ['models']
+            }),
+            getModel : builder.query({
+                query:(id)=>{
+                    return {
+                        url:`/model/${id}`,
+                        method:"GET"
+                    }
+                }, 
+                providesTags: ['models']
             })
         }
     }
 })
-export const {useCModelMutation, useGetModelsQuery} = modelService;
+export const {useCModelMutation,useUpdateModelMutation, useGetModelsQuery, useGetModelQuery,} = modelService;
 export default modelService;
