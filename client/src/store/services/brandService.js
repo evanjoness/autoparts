@@ -60,38 +60,21 @@ const brandService = createApi({
                 method: "GET",
               };
             },
-<<<<<<< HEAD:client/src/store/services/brandService.js
             providesTags: ["brands"],
           }),
           allBrands: builder.query({
-=======
-            providesTags: ["categories"],
-          }),
-          allModels : builder.query({
->>>>>>> main:client/src/store/services/categoryService.js
             query:()=>{
               return{
                 url:"allbrands",
                 method:"GET"
               };
-<<<<<<< HEAD:client/src/store/services/brandService.js
 
             },
             providesTags: ["brands"],
-=======
-            },
-            providesTags: ["categories"]
->>>>>>> main:client/src/store/services/categoryService.js
           })
         }
     }
 });
-<<<<<<< HEAD:client/src/store/services/brandService.js
 export const {useCreateMutation, useGetQuery, useFetchBrandQuery, useAllBrandsQuery,
 useUpdateBrandMutation, useDeleteBrandMutation} = brandService
 export default brandService;
-=======
-export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, useAllModelsQuery,
-useUpdateCategoryMutation, useDeleteCategoryMutation} = categoryService
-export default categoryService;
->>>>>>> main:client/src/store/services/categoryService.js

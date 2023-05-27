@@ -69,15 +69,9 @@ class Brand{
           return res.status(500).json("server internal error")
         }
       }
-<<<<<<< HEAD:backend/controllers/Brand.js
       async allBrands(req, res){
         try {
           const brands = await BrandModel.find({});
-=======
-      async allCategories(req, res){
-        try {
-          const brands = await CategoryModel.find({});
->>>>>>> main:backend/controllers/Category.js
           return res.status(200).json({brands})
         } catch (error) {
           return res.status(500).json("server internal error")

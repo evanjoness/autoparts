@@ -6,8 +6,4 @@ const brandSchema = mongoose.Schema({
         unique:true
     }
 },{timestamps:true})
-<<<<<<< HEAD:backend/models/Brand.js
 module.exports =  mongoose.model("brands", brandSchema)
-=======
-module.exports =  mongoose.model("brands", categorySchema)
->>>>>>> main:backend/models/Category.js

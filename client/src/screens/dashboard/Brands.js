@@ -40,13 +40,8 @@ const Brands = () => {
   return (
     <Wrapper>
       <ScreenHeader>
-<<<<<<< HEAD:client/src/screens/dashboard/Brands.js
         <Link to="/dashboard/create-brand" className="btn-dark">
           add brands <i className="bi bi-plus"></i>
-=======
-        <Link to="/dashboard/create-category" className="btn-dark">
-          add car brand <i className="bi bi-plus"></i>
->>>>>>> main:client/src/screens/dashboard/Categories.js
         </Link>
       </ScreenHeader>
       {success && <div className="alert-success">{success}</div>}

@@ -21,19 +21,11 @@ const SideBar = ({side, closeSidebar})=>{
                 className="text-base capitalize">costumers</Link>
                 </li>
                 <li className="px-4 cursor-pointer transition-all py-3 text-white flex items-center hover:bg-gray-600">
-<<<<<<< HEAD
                 <i className="bbi bi-bar-chart mr-2 inline-block text-lg"></i> <Link to="/dashboard/brands"
                 className="text-base capitalize">brands</Link>
                 </li>
                 <li className="px-4 cursor-pointer transition-all py-3 text-white flex items-center hover:bg-gray-600">
                 <i className="bi bi-car-front-fill mr-2 inline-block text-lg"></i> <Link to="/dashboard/models"
-=======
-                <i className="bbi bi-bar-chart mr-2 inline-block text-lg"></i> <Link to="/dashboard/categories"
-                className="text-base capitalize">car brand</Link>
-                </li>
-                <li className="px-4 cursor-pointer transition-all py-3 text-white flex items-center hover:bg-gray-600">
-                <i className="bi bi-car-front mr-2 inline-block text-lg"></i> <Link to="/dashboard/models"
->>>>>>> main
                 className="text-base capitalize">models</Link>
                 </li>
             </ul>
