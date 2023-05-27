@@ -1,8 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-const categoryService = createApi({
-    reducerPath:"category",
-    tagTypes:"categories",
+const brandService = createApi({
+    reducerPath:"brand",
+    tagTypes:"brands",
     baseQuery:fetchBaseQuery({
         baseUrl:"http://localhost:5000/api/",
         prepareHeaders:(headers, {getState})=>{
@@ -18,62 +18,80 @@ const categoryService = createApi({
           create: builder.mutation({
             query: (name) => {
               return {
-                url: "create-category",
+                url: "create-brand",
                 method: "POST",
                 body: name,
               };
             },
-            invalidatesTags: ["categories"],
+            invalidatesTags: ["brands"],
           }),
-          updateCategory: builder.mutation({
+          updateBrand: builder.mutation({
             query: (data) => {
               return {
-                url: `update-category/${data.id}`,
+                url: `update-brand/${data.id}`,
                 method: "PUT",
                 body: { name: data.name },
               };
             },
-            invalidatesTags: ["categories"],
+            invalidatesTags: ["brands"],
           }),
-          deleteCategory: builder.mutation({
+          deleteBrand: builder.mutation({
             query: (id) => {
               return {
-                url: `delete-category/${id}`,
+                url: `delete-brand/${id}`,
                 method: "DELETE",
               };
             },
-            invalidatesTags: ["categories"],
+            invalidatesTags: ["brands"],
           }),
           get: builder.query({
             query: (page) => {
               return {
-                url: `categories/${page}`,
+                url: `brands/${page}`,
                 method: "GET",
               };
             },
-            providesTags: ["categories"],
+            providesTags: ["brands"],
           }),
-          fetchCategory: builder.query({
+          fetchBrand: builder.query({
             query: (id) => {
               return {
-                url: `fetch-category/${id}`,
+                url: `fetch-brand/${id}`,
                 method: "GET",
               };
             },
+<<<<<<< HEAD:client/src/store/services/brandService.js
+            providesTags: ["brands"],
+          }),
+          allBrands: builder.query({
+=======
             providesTags: ["categories"],
           }),
           allModels : builder.query({
+>>>>>>> main:client/src/store/services/categoryService.js
             query:()=>{
               return{
                 url:"allbrands",
                 method:"GET"
               };
+<<<<<<< HEAD:client/src/store/services/brandService.js
+
+            },
+            providesTags: ["brands"],
+=======
             },
             providesTags: ["categories"]
+>>>>>>> main:client/src/store/services/categoryService.js
           })
         }
     }
 });
+<<<<<<< HEAD:client/src/store/services/brandService.js
+export const {useCreateMutation, useGetQuery, useFetchBrandQuery, useAllBrandsQuery,
+useUpdateBrandMutation, useDeleteBrandMutation} = brandService
+export default brandService;
+=======
 export const {useCreateMutation, useGetQuery, useFetchCategoryQuery, useAllModelsQuery,
 useUpdateCategoryMutation, useDeleteCategoryMutation} = categoryService
 export default categoryService;
+>>>>>>> main:client/src/store/services/categoryService.js

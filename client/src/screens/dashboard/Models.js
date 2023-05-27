@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+import Wrapper from "./Wrapper";
+import { Link } from "react-router-dom";
+const Models = () => {
+    return (
+        <Wrapper>
+       <Link to="/dashboard/create-model" className="btn-dark">
+           create model
+        </Link>
+        zzzzzz
+=======
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -76,6 +87,7 @@ const Models = () => {
             count={data.count} path="dashboard/models" data={data} />
 
         </div>:"No models":<Spinner/>}
+>>>>>>> main
         </Wrapper>
     )
 }
