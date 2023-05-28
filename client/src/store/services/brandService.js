@@ -18,7 +18,7 @@ const brandService = createApi({
           create: builder.mutation({
             query: (name) => {
               return {
-                url: "create-brand",
+                url: "/create-brand",
                 method: "POST",
                 body: name,
               };
