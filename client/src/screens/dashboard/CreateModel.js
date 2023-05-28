@@ -1,10 +1,13 @@
 import Wrapper from "./Wrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ScreenHeader from "../../components/ScreenHeader";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link , useNavigate} from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 import {useAllBrandsQuery} from "../../store/services/brandService";
 import { useCreateMutation } from "../../store/services/modelService";
 import Spinner from "../../components/Spinner";
+import { setSuccess } from "../../store/reducers/globalReducer";
 const CreateModel = ()=>{
     const {data=[], isFetching} = useAllBrandsQuery();
     const [state, setState] = useState({
@@ -39,6 +42,22 @@ const CreateModel = ()=>{
         createNewMode(formData);
         console.log(state);
     }
+    
+    useEffect(()=>{
+        if(!response.isSuccess){
+            response?.error?.data?.errors.map(err=>{
+                toast.error(err.msg);
+            })
+        }
+    },[response?.error?.data?.errors])
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(response.isSuccess){
+            dispatch(setSuccess(response?.data?.msg));
+            navigate("/dashboard/models")
+        }
+    },[response?.isSuccess])
     return(
         <Wrapper>
             <ScreenHeader>
@@ -46,6 +65,7 @@ const CreateModel = ()=>{
             <i className="bi bi-arrow-left-short"></i> models list
             </Link>
             </ScreenHeader>
+            <Toaster position="top-right" reverseOrder={true}/>
             <div className="flex flex-wrap -mx-3">
                 <form className="w-full xl:w-8/12 p-3" onSubmit={createMod}>
                     <div className="flex flex-wrap">
@@ -100,7 +120,8 @@ const CreateModel = ()=>{
                             id="enginePower" placeholder="engine power..." onChange={handleInput} value={state.enginePower}/>
                         </div>
                         <div className="w-full md:w-6/12 p-3">
-                            <input type="submit" value="save model" className="btn btn-indigo"/>
+                            <input type="submit" value={response.isLoading ? "loading...":"save product"}
+                            disabled={response.isLoading ?true:false}  className="btn btn-indigo"/>
                         </div>
                     </div>
                 </form>

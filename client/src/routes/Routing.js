@@ -23,6 +23,7 @@ const Routing = ()=>{
                 <Route path="create-brand" element={<Private><CreateBrand/></Private>}/>
                 <Route path="update-brand/:id" element={<Private><UpdateBrand/></Private>}/>
                 <Route path="models" element={<Private><Models/></Private>}/>
+                <Route path="models/:page" element={<Private><Models/></Private>}/>
                 <Route path="create-model" element={<Private><CreateModel/></Private>}/>
             </Route>
         </Routes>

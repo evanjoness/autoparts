@@ -25,10 +25,18 @@ const modelService = createApi({
         },
         invalidatesTags: ["models"],
       }),
+      getModels:builder.query({
+        query:(page)=>{
+          return{
+            url:`/models/${page}`,
+            method:"GET"
+          }
+        }
+      })
     };
   },
 });
 export const {
-  useCreateMutation
+  useCreateMutation, useGetModelsQuery
 } = modelService;
 export default modelService;
