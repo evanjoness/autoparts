@@ -31,7 +31,8 @@ const modelService = createApi({
             url:`/models/${page}`,
             method:"GET"
           }
-        }
+        },
+        providesTags:["models"]
       })
     };
   },
