@@ -19,7 +19,7 @@ const UpdateBrand = () => {
     data?.brand && setState(data?.brand?.name);
   }, [data?.brand]);
 
-  const [saveBrand, response] =   useUpdateBrandMutation();
+  const [saveBrand, response] = useUpdateBrandMutation();
   console.log(response);
   const errors = response?.error?.data?.errors ? response?.error?.data?.errors : [];
   const updateSubmit = (e) => {

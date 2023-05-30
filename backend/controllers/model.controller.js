@@ -1,5 +1,5 @@
 const formidable = require('formidable');
-const carModel = require("../models/CarModel");
+const carModel = require("../models/car-model.model");
 // const {validationResult} = require("express-validator");
 
 class Model {
@@ -68,12 +68,17 @@ class Model {
   };
 
   async get(req, res) {
-    const { page } = req.params;
+    const page = req.query.page || 1;
     const perPage = 5;
     const skip = (page - 1) * perPage;
     try {
       const count = await carModel.find({}).countDocuments();
-      const response = await carModel.find({}).skip(skip).limit(perPage).sort({ updatedAt: -1 });
+      const response = await carModel
+        .find({})
+        .skip(skip)
+        .limit(perPage)
+        .sort({ updatedAt: -1 })
+        .populate("brandId", "_id name");
       console.log(response);
       return res.status(200).json({ models: response, perPage, count });
     } catch (error) {

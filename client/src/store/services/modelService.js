@@ -4,7 +4,7 @@ const modelService = createApi({
   reducerPath: "model",
   tagTypes: "models",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/",
+    baseUrl: "http://localhost:5000/api/model",
     prepareHeaders: (headers, { getState }) => {
       const reducers = getState();
       const token = reducers?.authReducer?.adminToken;
@@ -18,17 +18,17 @@ const modelService = createApi({
       create: builder.mutation({
         query: (name) => {
           return {
-            url: "create-model",
+            url: "",
             method: "POST",
             body: name,
           };
         },
         invalidatesTags: ["models"],
       }),
-      getModels:builder.query({
-        query:(page)=>{
-          return{
-            url:`/models/${page}`,
+      getModels: builder.query({
+        query: (page) => {
+          return {
+            url:`?page=${page}`,
             method:"GET"
           }
         },
@@ -37,7 +37,9 @@ const modelService = createApi({
     };
   },
 });
+
 export const {
-  useCreateMutation, useGetModelsQuery
+  useCreateMutation,
+  useGetModelsQuery,
 } = modelService;
 export default modelService;
