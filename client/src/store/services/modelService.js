@@ -33,7 +33,16 @@ const modelService = createApi({
           }
         },
         providesTags:["models"]
-      })
+      }),
+      allModels: builder.query({
+        query: () => {
+            return {
+                url: "",
+                method: "GET"
+            };
+        },
+        providesTags: ["models"],
+    })
     };
   },
 });
