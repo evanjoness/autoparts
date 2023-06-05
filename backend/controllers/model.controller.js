@@ -3,7 +3,7 @@ const carModel = require("../models/car-model.model");
 // const {validationResult} = require("express-validator");
 
 class Model {
-  create = async (req, res) => {
+  async create(req, res) {
     // Your implementation for the create method
     const form = formidable({ multiples: true });
     form.parse(req, async (err, fields) => {
@@ -65,29 +65,13 @@ class Model {
         console.log("errors: ", errors);
       }
     });
-  };
-  async models(req, res) {
-    const page = req.query.page;
+  }
+  async getAll(req, res) {
+    const page = Number(req.query.page);
     if (!page) {
-      return Model.allModels(req, res);
+      return Model.getAllWithoutPagination(req, res);
     }
 
-    const perPage = 3;
-    const skip = (page - 1) * perPage;
-    try {
-        const count = await carModel.find({}).countDocuments();
-        const response = await carModel.find({})
-            .skip(skip)
-            .limit(perPage)
-            .sort({ updatedAt: -1 });
-        console.log(response);
-        return res.status(200).json({ models: response, perPage, count });
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-  async get(req, res) {
-    const page = req.query.page || 1;
     const perPage = 5;
     const skip = (page - 1) * perPage;
     try {
@@ -105,10 +89,10 @@ class Model {
       return res.status(500).json({ error: error.message });
     }
   }
-  async allModels(req, res) {
+  static async getAllWithoutPagination(req, res) {
     try {
         const models = await carModel.find({});
-        return res.status(200).json({models})
+        return res.status(200).json({ models });
     } catch (error) {
         return res.status(500).json("server internal error");
     }
