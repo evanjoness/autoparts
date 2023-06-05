@@ -7,8 +7,6 @@ import {useAllModelsQuery} from "../../store/services/modelService"
 import PicturePreview from "../../components/PicturePreview";
 const CreateProduct = ()=>{
     const {data=[], isFetching} = useAllModelsQuery();
-    console.log(data, isFetching);
-    console.log(data);
     const [state, setState] = useState({
         modelId:[],
         system:"",
@@ -48,7 +46,10 @@ const CreateProduct = ()=>{
             ${model.carBody} ${model.carEngine} ${model.enginePower}`
         };
         })
-        console.log("preview  ", preview);
+        const createPro = e =>{
+            e.preventDefault();
+            console.log(state);
+        }
     return(
         <Wrapper>
             <ScreenHeader>
@@ -57,7 +58,7 @@ const CreateProduct = ()=>{
             </Link>
             </ScreenHeader>
             <div className="flex flex-wrap -mx-3">
-                <div className="w-full xl:w-8/12 p-3">
+                <form className="w-full xl:w-8/12 p-3" onSubmit={createPro}>
                     <div className="flex flex-wrap">
                         <div className="w-full md:w-6/12 p-3">
                             <label htmlFor="productType" className="label">car models</label>
@@ -114,10 +115,13 @@ const CreateProduct = ()=>{
                             <input type="file" name="picture" id="picture" 
                              className="input-file" onChange={pictureHandle}/>
                         </div>
+                        <div className="w-full p-3">
+                            <input type="submit" value="save product" className="btn btn-indigo" />
+                        </div>
                     </div>
-                    <div className="w-full xl:w-4/12 p-3">
+                </form>
+                <div className="w-full xl:w-4/12 p-3">
                         <PicturePreview url={preview.picture} heading="picture"/>
-                    </div>
                 </div>
             </div>
         </Wrapper>
