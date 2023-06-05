@@ -91,7 +91,7 @@ class Model {
   }
   static async getAllWithoutPagination(req, res) {
     try {
-        const models = await carModel.find({});
+        const models = await carModel.find({}).populate("brandId", "_id name");
         return res.status(200).json({ models });
     } catch (error) {
         return res.status(500).json("server internal error");
