@@ -66,7 +66,26 @@ class Model {
       }
     });
   };
+  async models(req, res) {
+    const page = req.query.page;
+    if (!page) {
+      return Model.allModels(req, res);
+    }
 
+    const perPage = 3;
+    const skip = (page - 1) * perPage;
+    try {
+        const count = await carModel.find({}).countDocuments();
+        const response = await carModel.find({})
+            .skip(skip)
+            .limit(perPage)
+            .sort({ updatedAt: -1 });
+        console.log(response);
+        return res.status(200).json({ models: response, perPage, count });
+    } catch (error) {
+        console.log(error.message);
+    }
+}
   async get(req, res) {
     const page = req.query.page || 1;
     const perPage = 5;
@@ -84,6 +103,14 @@ class Model {
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ error: error.message });
+    }
+  }
+  async allModels(req, res) {
+    try {
+        const models = await carModel.find({});
+        return res.status(200).json({models})
+    } catch (error) {
+        return res.status(500).json("server internal error");
     }
   }
 }

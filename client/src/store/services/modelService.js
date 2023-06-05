@@ -50,5 +50,6 @@ const modelService = createApi({
 export const {
   useCreateMutation,
   useGetModelsQuery,
+  useAllModelsQuery
 } = modelService;
 export default modelService;

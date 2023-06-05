@@ -5,5 +5,6 @@ const Authorization = require("../services/Authorization");
 
 router.post("/", Authorization.authorized, Model.create);
 router.get("/", Authorization.authorized, Model.get);
+router.get("/", Authorization.authorized,  Model.models);
 
 module.exports = router;
