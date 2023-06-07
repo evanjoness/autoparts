@@ -4,21 +4,25 @@ import ScreenHeader from "../../components/ScreenHeader";
 import Multiselect from 'multiselect-react-dropdown';
 import Wrapper from "./Wrapper";
 import { useAllModelsQuery } from "../../store/services/modelService";
+import { useCreateMutation } from "../../store/services/productService";
 import PicturePreview from "../../components/PicturePreview";
 const CreateProduct = () => {
     const { data=[], isFetching } = useAllModelsQuery();
+    const [value, setValue] = useState("")
     const [state, setState] = useState({
         modelId: [],
         system: "",
         name: "",
+        specification:"",
         manufacturer: "",
+        country:"",
         price: 0,
         quantity: 0,
         discount: 0,
-        picture: ""
+        photo: ""
     });
     const [preview, setPreview] = useState({
-        picture: ""
+        photo: ""
     });
     const pictureHandle = e => {
         if (e.target.files.length !== 0) {
@@ -52,9 +56,14 @@ const CreateProduct = () => {
             ${model.carBody} ${model.carEngine} ${model.enginePower}`
         };
     });
+    const [createNewProduct, response] = useCreateMutation();
+    console.log("Your response: ", response);
     const createPro = e => {
         e.preventDefault();
-        console.log(state);
+        const formData = new FormData();
+        formData.append("data", JSON.stringify(state));
+        formData.append("photo", state.photo)
+        createNewProduct(formData);
     }
     return(
         <Wrapper>
@@ -70,11 +79,32 @@ const CreateProduct = () => {
                             <label htmlFor="productType" className="label">car models</label>
                             <Multiselect
                                 options={options}
+                                groupBy="brand"
                                 displayValue="displayValue"
-                                className="form-control"
+                                id="css_custom"
                                 onSelect={handleSelected}
                                 onRemove={handleSelected}
-                            />
+
+                                style={{
+                                    chips: {
+                                      background: '#111827',
+                                      color:"white"
+                                      
+                                    },
+                                    multiselectContainer: {
+                                      color: 'indigo'
+                                    },
+                                    searchBox: {
+                                      border: 'none',
+                                      'borderBottom': '1px solid blue',
+                                      'borderRadius': '0px'
+                                    },
+                                      option: { // To change css for dropdown options
+                                        color: "black",
+                                      },
+
+                                  }}
+                                />
                         </div>
                         <div className="w-full md:w-6/12 p-3">
                             <label htmlFor="system" className="label">system</label>
@@ -117,8 +147,8 @@ const CreateProduct = () => {
                             id="quantity" placeholder="quantity..." onChange={handleInput} value={state.quantity}/>
                         </div>
                         <div className="w-full p-3">
-                            <label htmlFor="picture" className="label">picture</label>
-                            <input type="file" name="picture" id="picture"
+                            <label htmlFor="photo" className="label">photo</label>
+                            <input type="file" name="photo" id="photo"
                              className="input-file" onChange={pictureHandle}/>
                         </div>
                         <div className="w-full p-3">
@@ -127,7 +157,7 @@ const CreateProduct = () => {
                     </div>
                 </form>
                 <div className="w-full xl:w-4/12 p-3">
-                        <PicturePreview url={preview.picture} heading="picture"/>
+                        <PicturePreview url={preview.photo} heading="photo"/>
                 </div>
             </div>
         </Wrapper>
