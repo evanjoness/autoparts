@@ -11,19 +11,19 @@ const Slider = () => {
     className="mySwiper"
   >
     <SwiperSlide className="slide">
-      <div className="slide-img bg-[url('../public/images/slider/1.jpg')]">
+      <div className="slide-img bg-[url('../public/slider/1.jpg')]">
       </div>
     </SwiperSlide>
     <SwiperSlide>
-    <div className="slide-img bg-[url('../public/images/slider/2.jpg')]">
+    <div className="slide-img bg-[url('../public/slider/2.jpg')]">
       </div>
     </SwiperSlide>
     <SwiperSlide>
-    <div className="slide-img bg-[url('../public/images/slider/3.jpg')]">
+    <div className="slide-img bg-[url('../public/slider/3.jpg')]">
       </div>
     </SwiperSlide>
     <SwiperSlide>      
-      <div className="slide-img bg-[url('../public/images/slider/4.jpg')]">
+      <div className="slide-img bg-[url('../public/slider/4.jpg')]">
       </div>
       </SwiperSlide>
   </Swiper>
