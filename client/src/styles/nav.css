@@ -1,5 +1,5 @@
 .nav{
-    @apply w-full h-[80px] flex items-center shadow-sm;
+    @apply bg-white w-full h-[80px] flex items-center shadow-sm;
 }
 .nav-li{
     @apply ml-8
