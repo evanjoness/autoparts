@@ -122,9 +122,10 @@ class Product {
             const response = await ProductModel.find({})
                 .skip(skip)
                 .limit(perPage)
-                .sort({ updatedAt: -1 });
+                .sort({ updatedAt: -1 })
+                .populate("modelId", "_id model");
             console.log(response);
-            return res.status(200).json({ spareParts: response, perPage, count });
+            return res.status(200).json({ products: response, perPage, count });
         } catch (error) {
             console.error(error.message);
         }
@@ -136,7 +137,7 @@ class Product {
                 .findOne({ _id: id })
                 .populate("modelId", "_id model");
             console.log("controller response: ", response);
-            return res.status(200).json({ sparePart: response });
+            return res.status(200).json({ product: response });
         } catch (error) {
             console.error(error.message);
         }
