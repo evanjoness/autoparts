@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "../screens/home/Home";
 import AdminLogin from "../screens/auth/AdminLogin";
 import Brands from "../screens/dashboard/Brands";
 import CreateBrand from "../screens/dashboard/CreateBrand";
@@ -14,6 +15,7 @@ const Routing = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="auth">
                     <Route path="admin-login" element={<Public><AdminLogin/></Public>}></Route>
                 </Route>

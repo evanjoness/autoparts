@@ -13,3 +13,6 @@
 .preview-picture{
     @apply w-full max-h-[190px] h-full rounded-md overflow-hidden mt-3;
 }
+.my-container{
+    @apply max-w-screen-xl w-full mx-auto px-6; 
+}
