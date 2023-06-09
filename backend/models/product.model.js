@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const sparePartSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
   system: { // engine, brakes, body ...
     type: String,
     required: true,
@@ -47,4 +47,4 @@ const sparePartSchema = mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model("sparePart", sparePartSchema);
+module.exports = mongoose.model("product", productSchema);

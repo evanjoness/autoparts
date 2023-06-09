@@ -3,10 +3,9 @@ const {v4: uuidv4} = require("uuid")
 const formidable = require('formidable');
 const fs = require("fs");
 const path = require("path")
-const SparePartModel = require("../models/spare-part.model");
-const sparePartModel = require("../models/spare-part.model");
+const ProductModel = require("../models/product.model");
 
-class SparePart {
+class Product {
     async create(req, res) {
         const form = formidable({ multiples: true });
         console.log(__dirname);
@@ -74,7 +73,7 @@ class SparePart {
                         }
                         if(errors.length===0){
                             try {
-                                const response = await sparePartModel.create({
+                                const response = await ProductModel.create({
                                     modelId:parsedData.modelId,
                                     system:parsedData.system,
                                     name:parsedData.name,
@@ -94,7 +93,7 @@ class SparePart {
                         }else{
                             return res.status(400).json({errors})
                         }
-                        
+
                     } else {
                         return res.status(400).json({errors})
                     }
@@ -107,7 +106,7 @@ class SparePart {
         })
         // const errors = validationResult(req);
         // if (errors.isEmpty()) {
-        //     await SparePartModel.create(req.body);
+        //     await ProductModel.create(req.body);
         //     return res.status(201).json({ message:"Spare part has been created successfully" });
         // } else {
         //     return res.status(400).json({ errors: errors.array() });
@@ -119,8 +118,8 @@ class SparePart {
         const perPage = 10;
         const skip = (page - 1) * perPage;
         try {
-            const count = await SparePartModel.find({}).countDocuments();
-            const response = await SparePartModel.find({})
+            const count = await ProductModel.find({}).countDocuments();
+            const response = await ProductModel.find({})
                 .skip(skip)
                 .limit(perPage)
                 .sort({ updatedAt: -1 });
@@ -133,7 +132,7 @@ class SparePart {
     async getById(req, res) {
         const { id } = req.params;
         try {
-            const response = await SparePartModel
+            const response = await ProductModel
                 .findOne({ _id: id })
                 .populate("modelId", "_id model");
             console.log("controller response: ", response);
@@ -146,7 +145,7 @@ class SparePart {
         const { id } = req.params;
         const errors = validationResult(req);
         if (errors.isEmpty()) {
-            const response = await SparePartModel.updateOne({ _id: id }, { $set: req.body});
+            const response = await ProductModel.updateOne({ _id: id }, { $set: req.body});
             return res.status(200).json({ message: "Spare part has been updated successfully" });
         } else {
             return res.status(400).json({ errors: errors.array() });
@@ -155,7 +154,7 @@ class SparePart {
     async delete(req, res) {
         const { id } = req.params;
         try {
-            await SparePartModel.deleteOne({ _id: id });
+            await ProductModel.deleteOne({ _id: id });
             return res.status(200).json({ message: "Brand has been deleted successfully" });
         } catch (error) {
             console.error(error.message);
@@ -164,4 +163,4 @@ class SparePart {
     }
 }
 
-module.exports = new SparePart;
+module.exports = new Product;
