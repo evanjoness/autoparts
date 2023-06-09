@@ -10,15 +10,22 @@ const Slider = () => {
     modules={[Pagination]}
     className="mySwiper"
   >
-    <SwiperSlide>Slide 1</SwiperSlide>
-    <SwiperSlide>Slide 2</SwiperSlide>
-    <SwiperSlide>Slide 3</SwiperSlide>
-    <SwiperSlide>Slide 4</SwiperSlide>
-    <SwiperSlide>Slide 5</SwiperSlide>
-    <SwiperSlide>Slide 6</SwiperSlide>
-    <SwiperSlide>Slide 7</SwiperSlide>
-    <SwiperSlide>Slide 8</SwiperSlide>
-    <SwiperSlide>Slide 9</SwiperSlide>
+    <SwiperSlide className="slide">
+      <div className="slide-img bg-[url('../public/images/slider/1.jpg')]">
+      </div>
+    </SwiperSlide>
+    <SwiperSlide>
+    <div className="slide-img bg-[url('../public/images/slider/2.jpg')]">
+      </div>
+    </SwiperSlide>
+    <SwiperSlide>
+    <div className="slide-img bg-[url('../public/images/slider/3.jpg')]">
+      </div>
+    </SwiperSlide>
+    <SwiperSlide>      
+      <div className="slide-img bg-[url('../public/images/slider/4.jpg')]">
+      </div>
+      </SwiperSlide>
   </Swiper>
   )
 }
