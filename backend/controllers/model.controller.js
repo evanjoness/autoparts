@@ -89,12 +89,22 @@ class Model {
       return res.status(500).json({ error: error.message });
     }
   }
+  async getModelsByBrand(req, res) {
+    const { id } = req.params;
+    try {
+      const models = await carModel.find({ brandId: id });
+      return res.status(200).json({ models });
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json("server internal error");
+    }
+  }
   static async getAllWithoutPagination(req, res) {
     try {
-        const models = await carModel.find({}).populate("brandId", "_id name");
-        return res.status(200).json({ models });
+      const models = await carModel.find({}).populate("brandId", "_id name");
+      return res.status(200).json({ models });
     } catch (error) {
-        return res.status(500).json("server internal error");
+      return res.status(500).json("server internal error");
     }
   }
 }

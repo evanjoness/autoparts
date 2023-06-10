@@ -128,6 +128,20 @@ class Product {
             return res.status(200).json({ products: response, perPage, count });
         } catch (error) {
             console.error(error.message);
+            return res.status(500).json("server internal error");
+        }
+    }
+    async getProductsByModel(req, res) {
+        const { id } = req.params;
+        try {
+            const response = await ProductModel
+                .find({ modelId: { $in: id }})
+                .populate("modelId", "_id model");
+            console.log("controller response: ", response);
+            return res.status(200).json({ products: response });
+        } catch (error) {
+            console.error(error.message);
+            return res.status(500).json("server internal error");
         }
     }
     async getById(req, res) {
@@ -140,6 +154,7 @@ class Product {
             return res.status(200).json({ product: response });
         } catch (error) {
             console.error(error.message);
+            return res.status(500).json("server internal error");
         }
     }
     async update(req, res) {

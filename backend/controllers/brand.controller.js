@@ -35,6 +35,7 @@ class Brand {
             return res.status(200).json({ brands: response, perPage, count });
         } catch (error) {
             console.log(error.message);
+            return res.status(500).json("server internal error");
         }
     }
     async fetchBrand(req, res) {
@@ -45,6 +46,7 @@ class Brand {
             return res.status(200).json({ brand: response });
         } catch (error) {
             console.log(error.message);
+            return res.status(500).json("server internal error");
         }
     }
     async updateBrand(req, res) {
