@@ -70,6 +70,15 @@ const brandService = createApi({
                     };
                 },
                 providesTags: ["brands"],
+            }),
+            allModelsByBrand: builder.query({
+                query: (id) => {
+                    return {
+                        url: `/${id}/model`,
+                        method: "GET",
+                    };
+                },
+                providesTags: ["brands", "models"],
             })
         };
     }
@@ -80,6 +89,7 @@ export const {
   useGetQuery,
   useFetchBrandQuery,
   useAllBrandsQuery,
+  useAllModelsByBrandQuery,
   useUpdateBrandMutation,
   useDeleteBrandMutation
 } = brandService;

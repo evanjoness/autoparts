@@ -92,7 +92,7 @@ class Model {
   async getModelsByBrand(req, res) {
     const { id } = req.params;
     try {
-      const models = await carModel.find({ brandId: id });
+      const models = await carModel.find({ brandId: id }).populate("brandId", "_id name");
       return res.status(200).json({ models });
     } catch (error) {
       console.log(error.message);

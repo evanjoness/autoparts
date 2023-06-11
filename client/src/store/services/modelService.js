@@ -42,7 +42,16 @@ const modelService = createApi({
             };
         },
         providesTags: ["models"],
-    })
+      }),
+      allProductsByModel: builder.query({
+        query: (id) => {
+            return {
+                url: `/${id}/product`,
+                method: "GET"
+            };
+        },
+        providesTags: ["models", "products"],
+      })
     };
   },
 });
@@ -50,6 +59,7 @@ const modelService = createApi({
 export const {
   useCreateMutation,
   useGetModelsQuery,
-  useAllModelsQuery
+  useAllModelsQuery,
+  useAllProductsByModelQuery
 } = modelService;
 export default modelService;

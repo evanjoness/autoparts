@@ -22,11 +22,11 @@ const Routing = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route element={<UserAuthRoute/>}>
-                <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="register" element={<Register/>}/>
                 </Route>
                 <Route element={<UserRoute/>}>
-                <Route path="user" element={<Dashboard/>}/>
+                    <Route path="user" element={<Dashboard/>}/>
                 </Route>
                 <Route path="auth">
                     <Route path="admin-login" element={<Public><AdminLogin/></Public>}></Route>
