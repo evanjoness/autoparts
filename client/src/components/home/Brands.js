@@ -67,7 +67,7 @@ const Brands = () => {
               </div>
               <div className="absolute inset-0 w-full h-full bg-black/50 flex items-center justify-center p-4">
                 <Link
-                  to={`/brand-models/${category._id}`}
+                  to={``}
                   className="text-white text-base font-medium capitalize"
                 >
                   {category.name}
