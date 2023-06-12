@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../screens/home/Home";
+import HomeBrands from "../screens/home/HomeBrands";
+import HomeModels from "../screens/home/HomeModels";
+import HomeProducts from "../screens/home/HomeProducts";
 import AdminLogin from "../screens/auth/AdminLogin";
 import Brands from "../screens/dashboard/Brands";
 import CreateBrand from "../screens/dashboard/CreateBrand";
@@ -20,7 +22,9 @@ const Routing = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<HomeBrands />} />
+                <Route path="/models-by-brand/:brandId" element={<HomeModels />} />
+                <Route path="/products-by-model/:modelId" element={<HomeProducts />} />
                 <Route element={<UserAuthRoute/>}>
                     <Route path="login" element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
