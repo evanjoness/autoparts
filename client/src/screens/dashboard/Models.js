@@ -33,7 +33,7 @@ const Models = () => {
     useEffect(() => {
         if (brandSearch) {
             setModelsToShow(data?.models.filter(model => {
-                return model.brandId.name.includes(brandSearch);
+                return model.brandId?.name.includes(brandSearch)||"without brand";
             }));
         } else {
             setModelsToShow(data?.models);
@@ -81,7 +81,7 @@ const Models = () => {
                             {modelsToShow.map(model => (
                                <tr className="odd:bg-gray-800" key={model._id}>
                                   {/* <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.brandName}</td> */}
-                                  <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.brandId.name}</td>
+                                  <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.brandId?.name||"without name"}</td>
                                   <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.model}</td>
                                   <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.year}</td>
                                   <td className="p-3 capitalize text-sm font-normal text-gray-400">{model.carBody}</td>

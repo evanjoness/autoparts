@@ -49,18 +49,18 @@ const CreateProduct = () => {
     const options = data?.models?.map(model => {
         return {
             id: model._id,
-            brand: model.brandId.name,
+            brand: model.brandId?.name||"withoud brand",
             name: model.model,
             year: model.year,
             carBody: model.carBody,
             carEngine: model.carEngine,
             enginePower: model.enginePower,
-            displayValue: `${model.brandId.name} ${model.model} ${model.year}
+            displayValue: `${model.brandId?.name||"withoud brand"} ${model.model} ${model.year}
             ${model.carBody} ${model.carEngine} ${model.enginePower}`
         };
     });
     const [createNewProduct, response] = useCreateMutation();
-    console.log("Your response: ", response);
+    // console.log("Your response: ", response);
     const createPro = e => {
         e.preventDefault();
         const formData = new FormData();
