@@ -69,20 +69,20 @@ const CreateProduct = () => {
         createNewProduct(formData);
     }
     useEffect(() => {
-        if(!response.isSuccess) {
-           response?.error?.data?.errors.map(err => {
-               toast.error(err.msg);
-           }) 
+        if (!response?.isSuccess) {
+          response?.error?.data?.errors.map(err => {
+            toast.error(err.msg);
+          });
         }
-     }, [response?.error?.data?.errors])
+      }, [response?.error?.data?.errors]);
      const dispatch = useDispatch();
      const navigate = useNavigate();
      useEffect(() => {
-         if(response?.isSuccess) {
-             dispatch(setSuccess(response?.data?.msg));
-            navigate('/dashboard/products');
-         }
-     }, [response?.isSuccess])
+        if (response?.isSuccess) {
+          dispatch(setSuccess(response?.data?.msg));
+          navigate('/dashboard/products');
+        }
+      }, [response?.isSuccess]);
     return(
         <Wrapper>
             <ScreenHeader>

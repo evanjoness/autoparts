@@ -38,7 +38,7 @@ const Slider = () => {
                     to={`/`}
                     className="btn btn-indigo text-sm"
                   >
-                    browse collections
+                    browse products
                   </Link>
                 </div>
               </div>
